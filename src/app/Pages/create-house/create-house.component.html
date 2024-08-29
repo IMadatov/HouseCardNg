@@ -1,0 +1,196 @@
+<div class="">
+  <div class="flex items-center justify-center p-12">
+    <!-- Author: FormBold Team -->
+    <div class="mx-auto w-full max-w-[550px] bg-white">
+      <form [formGroup]="createCardForm">
+        <div class="mb-5">
+          <!-- houseId: number;
+  houseName: string;
+  city: string;
+  state: string;
+  availableUnits: number;
+  wifi: boolean;
+  loundry: boolean;
+  photoId: number; -->
+          <label
+            for="name"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            House Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="House Name"
+            formControlName="houseName"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="City"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            City
+          </label>
+          <input
+            type="text"
+            placeholder="City"
+            formControlName="city"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="email"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            State
+          </label>
+          <input
+            type="text"
+            placeholder="State"
+            formControlName="State"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+
+        <div class="mb-5 pt-3">
+          <label
+            class="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl"
+          >
+            Address Details
+          </label>
+          <div class="-mx-3 flex flex-wrap justify-center">
+            <div class="w-full px-3 sm:w-1/2">
+              <label class="mb-5 block font-semibold text-[#07074D] sm:text-xl">
+                WiFi
+              </label>
+              <div class="mb-5">
+                <input
+                  type="checkbox"
+                  name="area"
+                  id="area"
+                  placeholder="wifi"
+                  formControlName="wifi"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
+            </div>
+            <div class="w-full px-3 sm:w-1/2">
+              <div class="mb-5">
+                <label
+                  class="mb-5 block font-semibold text-[#07074D] sm:text-xl"
+                >
+                  Loundry
+                </label>
+                <input
+                  type="checkbox"
+                  name="city"
+                  id="city"
+                  placeholder="Enter city"
+                  formControlName="loundry"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
+            </div>
+
+            <div class="w-full px-3 sm:w-1/2">
+              <label class="mb-5 block font-semibold text-[#07074D] sm:text-xl">
+                Available Units
+              </label>
+              <div class="mb-5">
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  inputmode="numeric"
+                  name="area"
+                  id="area"
+                  placeholder="Available Units"
+                  formControlName="availableUnits"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="!imageService.file"
+          class="flex items-center justify-center w-full"
+        >
+          <label
+            for="dropzone-file"
+            class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+          >
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg
+                class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 16"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                />
+              </svg>
+              <p class="mb-2 text-sm text-gray-500">
+                <span class="font-semibold">Click to upload</span> or drag and
+                drop
+              </p>
+              <p class="text-xs text-gray-500">
+                SVG, PNG, JPG or GIF (MAX. 800x400px)
+              </p>
+            </div>
+            <input
+              id="dropzone-file"
+              accept="image/JPG"
+              (change)="imageService.processFile($event)"
+              type="file"
+              class="hidden"
+            />
+          </label>
+        </div>
+        <div
+          *ngIf="imageService.file as file"
+          class="items-center flex flex-col"
+        >
+          <div>file name: {{ file.name }}</div>
+          <div>file size: {{ file.size }}</div>
+          <div class="w-96 h-96 items-center flex justify-center">
+            <div class="h-72 w-96">
+              <img
+                class="w-full h-full"
+                [src]="imageService.fileUrl"
+                alt="file"
+              />
+            </div>
+          </div>
+          <button
+            class="border-pink-400 border-solid border p-3 rounded"
+            (click)="imageService.file = null"
+          >
+            Remove
+          </button>
+        </div>
+        <br />
+        <div>
+          <button
+            (click)="postHouse()"
+            [disabled]="createCardForm.invalid && !imageService.file"
+            class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

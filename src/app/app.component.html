@@ -1,10 +1,14 @@
-<main class="flex flex-col items-center text-center bg-white  ">
-  <header class="w-auto">
-    <a routerLink="/" >
-    <img  src="../assets/logo.svg" alt="logo" >
-  </a>
-  </header>
-  <div class="w-auto">
+<main
+  class="flex flex-col justify-between items-center text-center bg-white"
+  style="min-height: 100vh"
+>
+  <div class="w-full bg-green-600" *ngIf="!onSign">
+    <app-header class="sticky" style="width: 100%"></app-header>
+  </div>
+  <div class="grow" style="width: 100%">
     <router-outlet></router-outlet>
+  </div>
+  <div class="w-full bot" *ngIf="!onSign">
+    <app-footer class="relative" style="width: 90%"></app-footer>
   </div>
 </main>

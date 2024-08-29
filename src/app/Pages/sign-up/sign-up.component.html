@@ -1,0 +1,71 @@
+<div class="mt-5">
+    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md px-8 py-10 flex flex-col items-center">
+        <h1 class="text-xl font-bold text-center text-gray-700 mb-8">Sign Up</h1>
+        <form action="#" class="w-full flex flex-col gap-4" [formGroup]="submitSigUpForm">
+            <div class="flex items-start flex-col justify-start ">
+                <label for="firstName" class="text-sm text-gray-700 mr-2">First Name: <span
+                        class="text-red-500">*</span></label>
+                <input type="text" id="firstName" name="firstName" formControlName="firstName" [ngClass]="{
+            'border-red':
+              !submitSigUpForm.controls.firstName.valid &&
+              submitSigUpForm.controls.firstName.dirty
+          }" class="w-full px-3 py-2 rounded-md border  border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="flex items-start flex-col justify-start">
+                <label for="lastName" class="text-sm text-gray-700 mr-2">Last Name: <span
+                    class="text-red-500">*</span></label>
+                <input type="text" id="lastName" name="lastName" formControlName="lastName"
+                    class="invalid:after:content-['*'] w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <!-- <div class="flex items-start flex-col justify-start">
+                <label for="username" class="text-sm text-gray-700  mr-2">Username:</label>
+                <input type="text" id="username" name="username"
+                    class="w-full px-3   py-2 rounded-md border border-gray-300  focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div> -->
+
+            <div class="flex items-start flex-col justify-start">
+                <label for="email" class="text-sm text-gray-700 mr-2">Email: <span
+                    class="text-red-500">*</span></label>
+                <input type="email" id="email" name="email" formControlName="email"
+                    class="invalid:after:content-['*'] w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="flex items-start flex-col justify-start">
+                <label for="password" class="text-sm text-gray-700 mr-2">Password: <span
+                    class="text-red-500">*</span></label>
+                <input type="password" id="password" name="password"
+                formControlName="password"
+                    class="invalid:after:content-['*'] w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="flex items-start flex-col justify-start">
+                <label for="confirmPassword" class="text-sm text-gray-700 mr-2">Confirm Password: <span
+                    class="text-red-500">*</span></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" formControlName="passwordConfirm"
+                    class="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 invalid:after:content-['*']" />
+            </div>
+
+            <button type="submit" [disabled]="!submitSigUpForm.valid" (click)="submitSignUp()"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md shadow-sm bled:">
+                Register
+            </button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <span class="text-sm text-gray-500">Already have an account? </span>
+            <a routerLink="/signin" class="text-blue-500 hover:text-blue-600">Login</a>
+        </div>
+
+        <a href="#"
+            class="inline-flex items-center border border-blue-500 px-3 py-1.5 rounded-md text-blue-600 hover:bg-indigo-50 mt-5">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18">
+                </path>
+            </svg>
+            <span class="ml-1 font-bold text-lg">Back</span>
+        </a>
+    </div>
+</div>
