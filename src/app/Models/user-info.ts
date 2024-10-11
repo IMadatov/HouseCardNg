@@ -1,16 +1,16 @@
 export interface UserInfo {
   userId: number;
 
-  userName: string;
+  userName: string|undefined;
 
-  userLastName: string;
+  userLastName: string|undefined;
 
-  email: string;
+  email: string|undefined;
   // {
-  //   "userId": 2,
-  //   "userName": "Islam",
-  //   "userLastName": "Madatov",
-  //   "email": "madatovislom920@gmail.com",
-  //   "password": "not access"
+  //   "userId": 12,
+  //   "userName": "Inomjon",
+  //   "userLastName": "Ismaylov",
+  //   "email": "ismoilov3600@gmail.com",
+  //   "password": "password"
   // }
 }

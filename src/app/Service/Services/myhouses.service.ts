@@ -22,7 +22,7 @@ export class MyhousesService {
         this.listMyHouses = respon;
 
         this.listMyHouses!.push({
-          isNew: true,
+          forAdd: true,
         } as Housinglocation);
 
         // console.log(this.listMyHouses);

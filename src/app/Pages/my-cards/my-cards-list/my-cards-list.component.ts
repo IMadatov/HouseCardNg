@@ -7,11 +7,12 @@ import { UserCard } from '../../../Models/user-card';
 import { Router } from '@angular/router';
 import { MycardlistService } from '../../../Service/Services/mycardlist.service';
 import { MycardsService } from '../../../Service/Services/mycards.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-my-cards-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './my-cards-list.component.html',
   styleUrl: './my-cards-list.component.css',
   providers:[ImageService,HomeService,UserService,MycardlistService]

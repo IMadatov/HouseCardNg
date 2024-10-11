@@ -1,3 +1,6 @@
+import { Status } from "./status";
+
+
 export interface Housinglocation {
   houseId: number;
   houseName: string | null | undefined;
@@ -9,8 +12,11 @@ export interface Housinglocation {
   price:string|null|undefined;
   photoId: number;
   createdUserId: number;
-  isNew?: boolean;
+  status?:Status;
+  isNew?:boolean;
+  forAdd?: boolean;
 }
+
 /**
  *{
     "houseId": 0,

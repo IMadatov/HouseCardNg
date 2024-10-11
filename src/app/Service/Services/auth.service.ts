@@ -10,7 +10,7 @@ import {
   HttpStatusCode,
 } from '@angular/common/http';
 import { Toast, ToastrService } from 'ngx-toastr';
-import { delay, filter } from 'rxjs';
+import { catchError, delay, filter, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,6 @@ export class AuthService {
   public authenticated: boolean = false;
   public userInfo: UserInfo | undefined;
   public shortNF: string | undefined;
-
 
   constructor(
     private httpService: HttpService,
@@ -33,18 +32,26 @@ export class AuthService {
         this.userInfo = resp;
 
         this.shortNF =
-          this.userInfo.userName.charAt(0).toUpperCase() +
-          this.userInfo.userLastName.charAt(0).toUpperCase();
+          this.userInfo.userName!.charAt(0).toUpperCase() +
+          this.userInfo.userLastName!.charAt(0).toUpperCase();
 
         this.authenticated = true;
-        
       },
       error: (err) => {
         console.log('u should sign in');
         console.error(err);
       },
     });
-    
+  }
+
+  checkLogin2(): Observable<boolean> {
+    return this.httpService.getAuthUser().pipe(
+      map((x) => !!x),
+      catchError((err, caught) => {
+        console.error(err);
+        return of(false);
+      })
+    );
   }
 
   logIn(loginModel: LoginModel) {

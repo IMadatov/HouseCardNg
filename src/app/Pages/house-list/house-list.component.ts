@@ -31,12 +31,14 @@ export class HouseListComponent implements OnInit {
     private homeService:HomeService
   ) {}
 
+   
   ngOnInit(): void {
     if(this.housingLocation.photoId && this.housingLocation.createdUserId){
 
       this.imageService.getImage(this.housingLocation.photoId);
       this.userService.getUserByID(this.housingLocation.createdUserId);
     }
+    
   }
 
   routerNavigate(str: string) {

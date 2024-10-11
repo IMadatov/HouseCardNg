@@ -1,4 +1,12 @@
-import { Component, Inject, Injectable, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Injectable,
+  OnInit,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 
 import { CommonModule, JsonPipe, NgForOf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -6,29 +14,31 @@ import { Route, Router } from '@angular/router';
 import { HomeService } from '../../Service/Services/home.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HouseListComponent } from '../house-list/house-list.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HttpService } from '../../Service/http.service';
+import { Housinglocation } from '../../Models/housinglocation';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports:[
-    CommonModule, 
-    FormsModule, 
+  imports: [
+    CommonModule,
+    FormsModule,
     HouseListComponent,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   template: `
     <div
       class="flex-col  m-0  mt-5"
       style="width: 100%;  padding-top: 0; margin-top: 0px;"
     >
-      <form class="w-1/2 mx-auto pt-3">
-        <div class="flex ">
+      <form class="w-full mx-auto pt-3">
+        <div class="flex justify-between w-full">
           <div>
             <div class="relative">
               <div
@@ -62,24 +72,31 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete'
               />
             </div>
           </div>
-          <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Number</mat-label>
-              <input
-                type="text"
-                placeholder="Pick one"
-                aria-label="Number"
-                matInput
-                [formControl]="myControl"
-                [matAutocomplete]="auto"
-              />
-              <mat-autocomplete #auto="matAutocomplete">
-                @for (option of homeService.filterHousingLocationList; track option) {
-                <mat-option [value]="option.createdUserId">{{ option.createdUserId }}</mat-option>
-                }
-              </mat-autocomplete>
-            </mat-form-field>
-          </form>
+
+          <div>
+            <form class="">
+              <mat-form-field class="">
+                <mat-label>Owners</mat-label>
+                <input
+                  #input
+                  type="text"
+                  placeholder="Pick one"
+                  matInput
+                  [formControl]="myControl"
+                  [matAutocomplete]="auto"
+                  (input)="filter()"
+                  (focus)="filter()"
+                />
+                <mat-autocomplete requireSelection #auto="matAutocomplete">
+                  @for (option of homeService.userInfoFilter; track option) {
+                  <mat-option [value]="option.userName">{{
+                    option.userName
+                  }}</mat-option>
+                  }
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+          </div>
         </div>
       </form>
       <section class="pt-5 flex flex-wrap gap-[5%]" style="width:100%;">
@@ -94,12 +111,44 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete'
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  filterText: string = '';
+  @ViewChild('input') input: ElementRef<HTMLInputElement> | undefined;
+
+  housingFilter:Housinglocation[]|undefined=[];
 
   myControl = new FormControl('');
+  filterText: any;
 
-  constructor(public homeService: HomeService, private router: Router) {}
+  constructor(
+    public homeService: HomeService,
+    private router: Router,
+    public httpService: HttpService
+  ) {}
   ngOnInit(): void {
-    this.homeService.getHomes();
+    this.homeService.getUserInfoAll();
+  }
+  displayFn(text: Housinglocation) {
+    return text && text.houseName ? text.houseName : '';
+  }
+  filter(): void {
+    const filterValue = this.input!.nativeElement.value.toLowerCase();
+
+    if (filterValue == '') {
+      this.homeService.filterHousingLocationList=this.homeService.listHome;
+      this.homeService.userInfoFilter=this.homeService.userInfoList;
+      return;
+    }
+    let userFilter = this.homeService.userInfoList?.filter((x) =>
+      x.userName?.toLowerCase().includes(filterValue.toLowerCase())
+    );
+
+    this.homeService.userInfoFilter=userFilter;
+    
+    for(let item of userFilter!){
+      this.housingFilter= this.housingFilter?.concat(this.homeService.listHome?.filter(x=>x.createdUserId==item.userId)!);
+    }
+
+    this.homeService.filterHousingLocationList=this.housingFilter;
+
+    this.housingFilter=[];
   }
 }

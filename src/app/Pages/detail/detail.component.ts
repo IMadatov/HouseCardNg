@@ -26,7 +26,7 @@ import { UserCardService } from '../../Service/Services/user-card.service';
         <div class="flex text-xl mt-2">
           <img src="../../assets/location-pin.svg" alt="" />
           {{ userCardService.housingLocation?.city }},
-          {{ userCardService.housingLocation?.state }}
+          {{ userCardService.housingLocation?.state }};
         </div>
         
         <br>

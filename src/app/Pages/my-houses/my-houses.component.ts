@@ -33,19 +33,19 @@ export class MyHousesComponent implements OnInit {
     this.myHouseService.getInCardsMyHouse();
     // this.myHouseService.getInCardsMyHouse();   
   }
-  getBuyerUserId(house: Housinglocation): number {
-    if (!this.myHouseService.selectedFromCardList) return -1;
+  // getBuyerUserId(house: Housinglocation): number {
+  //   if (!this.myHouseService.selectedFromCardList) return -1;
 
-    let index = this.myHouseService.selectedFromCardList.findIndex(
-      (x) => x.houseId == house.houseId
-    );
+  //   let index = this.myHouseService.selectedFromCardList.findIndex(
+  //     (x) => x.houseId == house.houseId
+  //   );
     
-    if (index == -1 || index == undefined) return -1;
+  //   if (index == -1 || index == undefined) return -1;
     
-    let userBuyerId =
-      this.myHouseService.selectedFromCardList[index].buyerUserId;
+  //   let userBuyerId =
+  //     this.myHouseService.selectedFromCardList[index].buyerUserId;
 
 
-    return userBuyerId!;
-  }
+  //   return userBuyerId!;
+  // }
 }

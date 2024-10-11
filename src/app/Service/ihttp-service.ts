@@ -44,7 +44,7 @@ export interface IHttpService {
 
   //User ************************************************************************************
 
-  getAllUsers(): Observable<User[]>;
+  getAllUsers(): Observable<UserInfo[]>;
 
   getUser(id: number): Observable<UserInfo>;
 

@@ -1,0 +1,26 @@
+<!-- component -->
+<div
+  class="bg-white pt-12 pr-0 pb-12 pl-0 mt-0 mr-auto mb-0 ml-auto sm:py-16 lg:py-20"
+>
+  <div
+    class="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto max-w-7xl sm:px-6 lg:px-8"
+  >
+    <div
+      class="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto max-w-4xl sm:px-6 lg:px-8"
+    >
+      <div
+        class="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto sm:flex sm:items-center sm:justify-between"
+      >
+        <div>
+          <p class="text-xl font-bold text-gray-900">Your offers</p>
+          <!-- <p class="text-sm mt-1 mr-0 mb-0 ml-0 font-semi-bold text-gray-500">Lorem ipsum dolor sit amet, consectetur
+                adipis</p> -->
+        </div>
+      </div>
+      <app-tab-notification-list
+        *ngFor="let item of service.filterCards"
+        [userCard]="item"
+      />
+    </div>
+  </div>
+</div>

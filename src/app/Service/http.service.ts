@@ -17,11 +17,12 @@ import { LoginModel } from '../Models/login-model';
   providedIn: 'root',
 })
 export class HttpService implements IHttpService {
-  urlAuth = 'http://localhost:5049/api/auth/';
-  urlHome = 'http://localhost:5049/api/Home/';
-  urlImage = 'http://localhost:5049/api/Image/';
-  urlUser = 'http://localhost:5049/api/User/';
-  urlUserCard = 'http://localhost:5049/api/UserCard/';
+  urlBase='http://localhost:5049';
+  urlAuth = this.urlBase+'/api/auth/';
+  urlHome = this.urlBase+'/api/Home/';
+  urlImage = this.urlBase+'/api/Image/';
+  urlUser = this.urlBase+'/api/User/';
+  urlUserCard = this.urlBase+'/api/UserCard/';
 
   constructor(private http: HttpClient) {}
 
@@ -122,8 +123,8 @@ export class HttpService implements IHttpService {
   }
 
   //User controller ---------------------------------------------------------------
-  getAllUsers(): Observable<User[]> {
-    throw new Error('Method not implemented.');
+  getAllUsers(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.urlUser+'GetAllUsers')
   }
 
   getUser(id: number): Observable<UserInfo> {
@@ -132,10 +133,20 @@ export class HttpService implements IHttpService {
     });
   }
 
-  updateUser(user: User): Observable<User> | any {
-    this.http.put<User>(this.urlUser + 'UpdateUser', user, {
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(this.urlUser + 'UpdateUser', user, {
       withCredentials: true,
     });
+  }
+
+  changePassword(newPsw:string,oldPsw:String):Observable<boolean>{
+    return this.http.put<boolean>(this.urlUser+'ChangePassword',{
+      oldPassword: oldPsw,
+      newPassword: newPsw
+    },
+  {
+    withCredentials:true
+  })
   }
 
   deleteUser(id: number): Observable<any> {
@@ -175,5 +186,18 @@ export class HttpService implements IHttpService {
       withCredentials: true,
       responseType: 'text',
     });
+  }
+  oldCard(cards:UserCard[]):Observable<boolean>{
+    return this.http.put<boolean>(this.urlUserCard+'OldCard',cards,{
+      withCredentials:true
+    })
+  }
+  acceptCard(cardId:number):Observable<boolean>{
+    return this.http.put<boolean>(this.urlUserCard+'AcceptedCard/'+cardId,
+      {},
+      {
+        withCredentials:true
+      }
+    )
   }
 }

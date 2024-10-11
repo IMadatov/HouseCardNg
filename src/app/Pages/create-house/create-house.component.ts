@@ -22,16 +22,15 @@ import { Housinglocation } from '../../Models/housinglocation';
 export class CreateHouseComponent {
   constructor(
     public imageService: ImageService,
-    private createService: CreateHouseService,
-    private ds: DomSanitizer
+    private createService: CreateHouseService
   ) {}
 
   createCardForm = new FormGroup({
     houseName: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     State: new FormControl('', [Validators.required]),
-    wifi: new FormControl(''),
-    loundry: new FormControl(''),
+    wifi: new FormControl(false),
+    loundry: new FormControl(false),
     availableUnits: new FormControl('', [Validators.required]),
     price:new FormControl('',[
       Validators.required,
@@ -50,8 +49,8 @@ export class CreateHouseComponent {
         city: valueForm.city,
         state: valueForm.State,
         availableUnits: parseInt(valueForm.availableUnits!),
-        wifi: valueForm.wifi == 'true',
-        loundry: valueForm.loundry == 'true',
+        wifi: valueForm.wifi == true,
+        loundry: valueForm.loundry == true,
         photoId: 0,
         createdUserId: 0,
         price:valueForm.price?.toString()

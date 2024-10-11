@@ -8,6 +8,7 @@ import { MyCardsComponent } from './Pages/my-cards/my-cards.component';
 import { MyHousesComponent } from './Pages/my-houses/my-houses.component';
 import { CreateHouseComponent } from './Pages/create-house/create-house.component';
 import { authGuard } from './guard/auth.guard';
+import { TabNotificationComponent } from './Pages/tab-notification/tab-notification.component';
 
 export const routes: Routes = [
   // history=Router.arguments.URL,
@@ -28,20 +29,23 @@ export const routes: Routes = [
     component: SignUpComponent,
   },
   {
-    path: 'profile',
+    path: 'profile',  
     component: ProfileComponent,
     canActivate:[authGuard]
   },
-  {
+  { 
     path:'profile/mycards',
     component:MyCardsComponent,
     canActivate:[authGuard]
-    
-    
   },
   {
     path:'profile/myhouses',
     component:MyHousesComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'profile/myhouses/tab-notification',
+    component:TabNotificationComponent,
     canActivate:[authGuard]
   },
   {

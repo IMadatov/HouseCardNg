@@ -1,0 +1,43 @@
+<div
+        class="shadow-xl mt-8 mr-0 mb-0 ml-0 pt-4 pr-10 pb-4 pl-10 flow-root rounded-lg sm:py-2"
+      >
+        <div class="pt--10 pr-0 pb-10 pl-0 flex flex-col">
+          <div class="p-5 mr-0 mb-0 ml-0 hover:bg-gray-400 rounded-md">
+            <div
+              class="sm:flex sm:items-center sm:justify-between sm:space-x-5"
+            >
+              <div class="flex items-center flex-1 min-w-0">
+                <img
+                  [src]="service.imageUrl"
+                  class="flex-shrink-0 object-cover rounded-full btn- w-32 h-32"
+                />
+                <div class="mt-0 mr-0 mb-0 ml-4 flex-1 min-w-0">
+                  <p class="text-lg font-bold text-gray-800 truncate">
+                    <span *ngIf="userCard?.isNew" class="text-red-600">*</span>
+                    {{service.user?.userName}} {{service.user?.userLastName}}
+                  </p>
+                  <p class="text-gray-600 text-md">{{service.card?.houseName}}: {{service.card?.city}}, {{service.card?.state}}</p>
+                </div>
+              </div>
+              <div
+                class="mt-4 mr-0 mb-0 ml-0 pt-0 pr-0 pb-0 pl-14 flex items-center sm:space-x-6 sm:pl-0 sm:mt-0"
+              >
+              <div *ngIf="service.card?.status?.toString()=='1'" >
+                <a 
+                  (click)="service.soldCard(userCard?.id!)"
+                  class= "hover:cursor-pointer bg-gray-800 pt-2 pr-6 pb-2 pl-6 text-lg font-medium text-gray-100 transition-all duration-200 hover:bg-gray-700 rounded-lg"
+                  >Accept</a
+                >
+              </div>
+                <div *ngIf="service.card?.status?.toString()=='2'" >
+                  <a
+                  class="bg-green-800 pt-2 pr-6 pb-2 pl-6 text-lg font-medium text-gray-100 transition-all duration-200 hover:bg-green-700 rounded-lg"
+                  >Accepted</a
+                >
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+      </div>
