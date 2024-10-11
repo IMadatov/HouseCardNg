@@ -7,14 +7,15 @@
           <div
             class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"
           >
-            House name: {{houseService.home?.houseName}}
+            House name: {{mycardListService.houseInfo?.houseName}}
           </div>
           <p class="block mt-1 text-lg leading-tight font-medium text-black">
-            {{houseService.home?.city}} , {{houseService.home?.state}}
+            {{mycardListService.houseInfo?.city}} , {{mycardListService.houseInfo?.state}}
           </p>
-          <p class="mt-2 text-gray-500">Owner: {{userService.userInfo?.userName}} {{userService.userInfo?.userLastName}} </p>
+          <p class="mt-2 text-gray-500">Owner: {{mycardListService.userInfo?.userName}} {{mycardListService.userInfo?.userLastName}} </p>
           
           <button
+          (click)="navigateDetailUrl(mycardListService.houseInfo?.houseId!)"
             class="mt-5 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             View Details
@@ -23,11 +24,11 @@
           (click)="cencelCard(card?.id!)"
             class="mt-5 ml-3 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
           >
-            Cancel Appointment
+            Cancel 
           </button>
         </div>
         <div class="end-0  h-72 mr-0 pr-0" >
-            <img [src]="imageService.fileUrl" class="w-full h-full  " style="object-fit: fill; ">
+            <img [src]="mycardListService.imageUrl" class="w-full h-full  " style="object-fit: fill; ">
         </div>
       </div>
     </div>

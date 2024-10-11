@@ -16,23 +16,27 @@ import { UserCardService } from '../../Service/Services/user-card.service';
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `
-    <div class="flex flex-col items-center p-0 mt-10">
-      <img class="h-lvh w-3/4 rounded-xl" [src]="userCardService.imageUrl" />
+    <div class="flex flex-col items-center p-0 mt-10 mb-5" >
+      <img class="h-lvh w-3/4 rounded-xl " [src]="userCardService.imageUrl" style="max-width: 800px; max-height: 600px;" />
       <div class="text-left">
         <h1 class="font-bold text-6xl">
-          {{ userCardService.housingLocation?.houseName }}
+          {{ userCardService.housingLocation?.houseName }}   
         </h1>
+        
         <div class="flex text-xl mt-2">
           <img src="../../assets/location-pin.svg" alt="" />
           {{ userCardService.housingLocation?.city }},
           {{ userCardService.housingLocation?.state }}
         </div>
+        
+        <br>
+        <div class="text-3xl"> $ {{userCardService.housingLocation?.price}}</div>
         <br />
         <p class="text-green-800 font-bold text-2xl">
           About this housing location
         </p>
         <h4>
-          Units available:{{ userCardService.housingLocation?.availableUnits }}
+          Number of rooms:{{ userCardService.housingLocation?.availableUnits }}
         </h4>
         <h4>Wifi : {{ userCardService.housingLocation?.wifi }}</h4>
         <h4>Laundry : {{ userCardService.housingLocation?.loundry }}</h4>
@@ -62,6 +66,7 @@ import { UserCardService } from '../../Service/Services/user-card.service';
     </div>
   `,
   styleUrl: './detail.component.css',
+  providers:[UserCardService]
 })
 export class DetailComponent implements OnInit {
   housingLocation: Housinglocation | undefined;

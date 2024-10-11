@@ -21,6 +21,6 @@ bootstrapApplication(AppComponent, {
       closeButton: true,
       onActivateTick: false,
     }),
-    provideAnimations(), provideAnimationsAsync()
+    provideAnimations(), provideAnimationsAsync(), provideAnimationsAsync()
   ],
 }).catch((err) => console.error(err));

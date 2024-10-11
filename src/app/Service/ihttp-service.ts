@@ -60,5 +60,6 @@ export interface IHttpService {
 
   postUserCard(id: number): Observable<boolean>;
 
-  deleteUserCard(id: number): Observable<string>;
+  deleteUserCard(id: number):any;
+  getInCardsMyHouse():Observable<UserCard[]>;
 }

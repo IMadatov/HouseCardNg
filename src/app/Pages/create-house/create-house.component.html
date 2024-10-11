@@ -60,7 +60,7 @@
           <label
             class="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl"
           >
-            Address Details
+            House  Details
           </label>
           <div class="-mx-3 flex flex-wrap justify-center">
             <div class="w-full px-3 sm:w-1/2">
@@ -98,7 +98,7 @@
 
             <div class="w-full px-3 sm:w-1/2">
               <label class="mb-5 block font-semibold text-[#07074D] sm:text-xl">
-                Available Units
+                Number Of Rooms
               </label>
               <div class="mb-5">
                 <input
@@ -112,6 +112,17 @@
                   formControlName="availableUnits"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
+              </div>
+            </div>
+            <div class="w-full px-3 sm:w-1/2">
+              <label class="mb-5 block font-semibold text-[#07074D] sm:text-xl">
+                Price
+              </label>
+              <div class="flex flex-col">
+                <div class="flex flex-row">
+                    <span class="flex items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold text-grey-darker">$</span>
+                    <input type="number"  min="0" name="price" formControlName="price" placeholder=" Price" class="bg-grey-lighter text-grey-darker py-2  rounded text-grey-darkest border border-grey-lighter active:border-0 font-bold">
+                </div>
               </div>
             </div>
           </div>

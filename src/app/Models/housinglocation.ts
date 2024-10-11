@@ -6,6 +6,7 @@ export interface Housinglocation {
   availableUnits: number | null | undefined;
   wifi: boolean | null | undefined;
   loundry: boolean | null | undefined;
+  price:string|null|undefined;
   photoId: number;
   createdUserId: number;
   isNew?: boolean;

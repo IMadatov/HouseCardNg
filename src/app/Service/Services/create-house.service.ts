@@ -11,7 +11,7 @@ export class CreateHouseService {
   constructor(private httpService: HttpService,private toastr:ToastrService) {}
 
   createHouse(housing: Housinglocation, image: File) {
-    // console.log('createHouse');
+    console.log(housing);
     
     this.httpService.postImage(image).subscribe({
       next: (resp: number | any) => {

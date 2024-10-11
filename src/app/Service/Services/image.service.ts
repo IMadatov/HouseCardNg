@@ -14,20 +14,14 @@ export class ImageService {
     this.fileUrl = URL.createObjectURL(this.file!);
   }
   getImage(id: number) {
-    this.service.getImageById(id).subscribe({
+    this.service.getImageById(id).subscribe({ 
       next: (resp: Blob) => {
         this.fileUrl = URL.createObjectURL(resp);
+
         // console.log('file from server' + this.fileUrl);
       },
     });
   }
 }
 
-@Injectable({ providedIn: 'root' })
-export class ImageRootService {
-  constructor(private service: HttpService) {}
 
-  getImage(id: number) {
-    this.service.getImageById(id);
-  }
-}

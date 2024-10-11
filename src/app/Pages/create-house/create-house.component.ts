@@ -33,6 +33,10 @@ export class CreateHouseComponent {
     wifi: new FormControl(''),
     loundry: new FormControl(''),
     availableUnits: new FormControl('', [Validators.required]),
+    price:new FormControl('',[
+      Validators.required,
+      Validators.min(0)
+    ])
   });
 
   postHouse() {
@@ -50,6 +54,7 @@ export class CreateHouseComponent {
         loundry: valueForm.loundry == 'true',
         photoId: 0,
         createdUserId: 0,
+        price:valueForm.price?.toString()
       },
       this.imageService.file!
     );

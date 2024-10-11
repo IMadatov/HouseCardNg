@@ -23,7 +23,6 @@ export class HttpService implements IHttpService {
   urlUser = 'http://localhost:5049/api/User/';
   urlUserCard = 'http://localhost:5049/api/UserCard/';
 
-
   constructor(private http: HttpClient) {}
 
   //Auth controller ---------------------------------------------------------
@@ -60,9 +59,9 @@ export class HttpService implements IHttpService {
     });
   }
 
-  getHouse(id:number):Observable<Housinglocation>{
-    return this.http.get<Housinglocation>(this.urlHome+'GetByIdHouse/'+id,{
-      withCredentials:true
+  getHouse(id: number): Observable<Housinglocation> {
+    return this.http.get<Housinglocation>(this.urlHome + 'GetByIdHouse/' + id, {
+      withCredentials: true,
     });
   }
 
@@ -146,6 +145,14 @@ export class HttpService implements IHttpService {
   }
 
   //User Card controller ----------------------------------------------
+
+  getInCardsMyHouse(): Observable<UserCard[]> {
+    return this.http.get<UserCard[]>(this.urlUserCard+'GetInCardsMyHouse',
+    {
+      withCredentials:true
+    }
+    );
+  }
   getUserCards(): Observable<UserCard[]> {
     return this.http.get<UserCard[]>(this.urlUserCard + 'GetAllUserCards', {
       withCredentials: true,
@@ -163,9 +170,10 @@ export class HttpService implements IHttpService {
       { withCredentials: true }
     );
   }
-  deleteUserCard(id: number): Observable<any> {
-    return this.http.delete<any>(this.urlUserCard + 'DeleteUserCard/' + id, {
+  deleteUserCard(id: number) {
+    return this.http.delete(this.urlUserCard + 'DeleteUserCard/' + id, {
       withCredentials: true,
+      responseType: 'text',
     });
   }
 }
